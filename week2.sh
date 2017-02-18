@@ -9,5 +9,5 @@ MYSQL_OPTIONS="--defaults-extra-file=${HYF_CONFIG} --table"
 echo
 echo "Loading week one data"
 echo
-mysql ${MYSQL_OPTIONS} < week1data.sql
+mysql ${MYSQL_OPTIONS} < week2data.sql
 echo
