@@ -1,6 +1,6 @@
 #!/bin/bash
 # Copyright (C) 2017 HackYourFuture
-# 
+#
 # Truncates and repopulates sample data for a given week.
 
 # The below config file should NOT be stored in git.
@@ -11,7 +11,7 @@ HYF_CONFIG=hyf.cnf
 
 # Check command line arguments for which week to populate.
 case $1 in
-  week[1-2])
+  step[1-3])
     SQL_FILE=$1data.sql
     ;;
   config)
@@ -25,18 +25,24 @@ case $1 in
     echo $"port=\${port}"
     echo $"database=\${database}"
     echo $""
-    echo $"Then run $0 {week1|week2} to populate the database."
+    echo $"Then run $0 {step1|step2|step3} to populate the database."
     echo $""
-    exit 1  
+    exit 1
     ;;
   *)
     echo $""
-    echo $"Usage: $0 {config|week1|week2}"
+    echo $"Usage: $0 {config|step1|step2|step3}"
     echo $""
     echo $"Actions:"
     echo $"  config: display instructions for creating the config file"
-    echo $"  week1: populate the database with week one data"
-    echo $"  week2: populate the database with week two data"
+    echo $"  step1: populate the database with a single table 'todos' with three"
+    echo $"    columns - 'Id', 'Done', and 'Name'"
+    echo $"  step2: populate the database with a single table 'todos' with five"
+    echo $"    columns - 'Id', 'Done', 'Name', 'Status', and 'Due'"
+    echo $"  step3: populate the database with two related tables 'todos' and"
+    echo $"    'statuses'. Removes column 'Done' and replaces 'Status' with"
+    echo $"    'StatusId' in table 'todos'. Table 'statuses' has two columns - "
+    echo $"    'Id' and 'Name'. Adds foreign key constraint to table 'todos'."
     echo $""
     exit 1
 esac
