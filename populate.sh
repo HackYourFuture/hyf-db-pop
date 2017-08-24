@@ -7,7 +7,6 @@
 #
 # All parameters are optional, but if not included must be specified on the
 # command line or the defaults are used where applicable.
-HYF_CONFIG=hyf.cnf
 
 # Check command line arguments for which week to populate.
 case $1 in
@@ -53,19 +52,10 @@ if [[ ! -f ${SQL_FILE} ]]; then
   exit 1
 fi
 
-# Check that the config file exists.
-if [[ ! -f ${HYF_CONFIG} ]]; then
-  echo $"Configuration file ${HYF_CONFIG} not found."
-  echo $"Run $0 config for instructions."
-  echo $""
-  exit 1
-fi
-
-MYSQL_OPTIONS="--defaults-extra-file=${HYF_CONFIG} --table"
-
 # Load the requested data
 echo
 echo "Loading $1 data"
 echo
-mysql ${MYSQL_OPTIONS} < ${SQL_FILE}
+mysql -u root -p$MYSQL_ROOT_PASSWORD -e "create database $HYF_DB_NAME"
+mysql -u root -p$MYSQL_ROOT_PASSWORD < ${SQL_FILE}
 echo
