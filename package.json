@@ -1,0 +1,27 @@
+{
+  "name": "hyf-db-pop",
+  "version": "0.0.1",
+  "description": "HackYourFuture database populator",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rts-rob/hyf-db-pop.git"
+  },
+  "keywords": [
+    "serverless",
+    "lambda",
+    "chatops"
+  ],
+  "author": "Rob Sutter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rts-rob/hyf-db-pop/issues"
+  },
+  "homepage": "https://github.com/rts-rob/hyf-db-pop#readme",
+  "dependencies": {
+    "mysql": "^2.14.1"
+  }
+}
