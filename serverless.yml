@@ -13,6 +13,7 @@ package:
 functions:
   reset:
     handler: handler.reset
+    memorySize: 128
     events:
       - http:
           path: reset

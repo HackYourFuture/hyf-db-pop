@@ -9,12 +9,14 @@ module.exports.reset = (event, context, callback) => {
   // event = {
   //   body : "token=CYlFjb3d6SGunrnvttnRsaV2&team_id=T0EJTUQ87&team_domain=hackyourfuture&channel_id=D3Y3D1GQK&channel_name=directmessage&user_id=U3Y5DFFK4&user_name=rob&command=%2Fdbreset&text=&response_url=https%3A%2F%2Fhooks.slack.com%2Fcommands%2FT0EJTUQ87%2F236549126758%2F2blVWb1Otoj9aTngEqd0P2Yx&trigger_id=235659491954.14639976279.b65669854fcd863d48d9cc8bd79e20e2",
   //   requestContext : {
-  //     userAgent : 'Slackbot'
+  //     identity : {
+  //       userAgent : 'Slackbot'
+  //     }
   //   }
   // }
 
   // Check the context for the Slack user agent. If not found, reject.
-  if (!event.requestContext.userAgent.toLowerCase().startsWith('slackbot')) {
+  if (!event.requestContext.identity.userAgent.toLowerCase().startsWith('slackbot')) {
     callback(buildError(401, "This endpoint can only be accessed via the Slack app."));
     return;
   }
@@ -65,8 +67,9 @@ ${resetScript}`;
 
     if (error) {
       callback(buildError(500, "A database error occured.\nPlease contact your teacher."));
-      console.log(error);
+      console.error(error);
     } else {
+      console.log(`Database reset for user ${requestingUser} via Slack.`)
       callback(null, buildResponse(`Hi, ${requestingUser}.\nYour database has been reset!`));      
     }
   });
