@@ -7,3 +7,5 @@ jspm_packages
 
 # Config files
 *-secret.json
+
+.DS_Store
