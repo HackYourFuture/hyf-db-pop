@@ -8,7 +8,7 @@ provider:
 package:
   exclude:
     - README.md
-    - popoulate.sh
+    - populate.sh
 
 functions:
   reset:
